@@ -62,4 +62,17 @@ public class Manager extends BaseDomain {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", key='" + key + '\'' +
+                ", createdAt=" + createdAt +
+                ", roles=" + roles +
+                '}';
+    }
 }

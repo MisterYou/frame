@@ -54,6 +54,7 @@ public class ManagerController extends BaseController{
 //        System.out.println("password"+pas);
 
         UsernamePasswordToken upt = new UsernamePasswordToken(account, password);
+
         Subject subject = SecurityUtils.getSubject();
 
         try {
@@ -61,6 +62,8 @@ public class ManagerController extends BaseController{
             //获取用户信息
 
             Manager manager=managerService.findByAccount(subject.getPrincipal().toString());
+
+            System.out.println(manager);
             if(manager.getKey()!=null&&!manager.getKey().isEmpty()){
                 //获取用户的权限列表
                 Set<String> permissions= managerService.findPermissions(account);
