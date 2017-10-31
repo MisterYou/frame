@@ -63,7 +63,6 @@ public class ManagerController extends BaseController{
 
             Manager manager=managerService.findByAccount(subject.getPrincipal().toString());
 
-            System.out.println(manager);
             if(manager.getKey()!=null&&!manager.getKey().isEmpty()){
                 //获取用户的权限列表
                 Set<String> permissions= managerService.findPermissions(account);
