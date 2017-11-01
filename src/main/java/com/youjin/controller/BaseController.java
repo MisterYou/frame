@@ -2,9 +2,15 @@ package com.youjin.controller;
 
 import com.github.pagehelper.Page;
 import com.youjin.common.Const;
+import com.youjin.util.Logger;
+import com.youjin.util.PageData;
+import com.youjin.util.UuidUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * Created by train on 17/2/16.
@@ -21,5 +27,37 @@ public class BaseController {
             pageSize=Integer.parseInt(request.getParameter("pageSize").toString());
         }
         return new Page(pageNum,pageSize);
+    }
+
+    protected Logger logger = Logger.getLogger(this.getClass());
+    /** new PageData对象
+     * @return
+     */
+    public PageData getPageData(){
+        return new PageData(this.getRequest());
+    }
+    public HttpServletRequest getRequest() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        return request;
+    }
+    /**得到32位的uuid
+     * @return
+     */
+    public String get32UUID(){
+        return UuidUtil.get32UUID();
+    }
+
+    public Object getTokenData() {
+        return getRequest().getAttribute("tokenData");
+    }
+
+    // 获取USER_ID
+    public String getUserId() {
+        Map data = (Map) getTokenData();
+        if (data != null) {
+            String userId = String.valueOf(data.get("tokenData"));
+            return userId;
+        }
+        return null;
     }
 }
