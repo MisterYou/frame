@@ -6,6 +6,7 @@ import com.youjin.annotation.Before;
 import com.youjin.domain.Manager;
 import com.youjin.service.ManagerService;
 import com.youjin.util.EncryptUtils;
+import com.youjin.util.PageData;
 import com.youjin.vaildator.ManagerValidator;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -81,6 +82,9 @@ public class ManagerController extends BaseController{
     @RequestMapping("/sendToken")
     @ResponseBody
     public Object sendToken(String username,String type){
+        PageData pd = new PageData();
+
+
         return "";
     }
 
